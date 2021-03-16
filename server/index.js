@@ -14,14 +14,15 @@ const mysql = require('mysql');
 const con = mysql.createConnection({
     host : "localhost",
     user: "root",
-    password : ""
+    password : "",
+    database:"ccp-drink"
 });
 
 con.connect((err)=>{
     if (err) throw err;
     console.log("Connected!");
-    con.query("DROP DATABASE mydatabaseTest1212312121" , (err , result)=>{
+    con.query("SELECT * FROM users" , (err , result, fields)=>{
         if(err) throw err;
-        console.log("DROP database it Success!")
+        console.log(result)
     })
 });
