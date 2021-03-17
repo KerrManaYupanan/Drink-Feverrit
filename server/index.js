@@ -13,10 +13,20 @@ const db = mysql.createConnection({
     database : "feverritdrink_v01"
 });
 
-db.connect((err)=>{
-    if (err) {
-        throw err
-    } else {
-        console.log('Database Connect')
+app.get('/users',(req,res)=>{
+    db.query("SELECT * FROM users",(err,result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
+
+app.listen('3001' , (err)=>{
+    if(err){
+        console.log("Port error is "+ err)
+    } else{
+        console.log("Server runing on port 3000")
     }
-});
+})
